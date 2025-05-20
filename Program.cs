@@ -1,4 +1,5 @@
 using Hydro.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using RazorTest.Conventions;
 
@@ -8,9 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options =>
 {
     options.RootDirectory = "/Views";
-    options.Conventions.Add(new TenantPageRouteModelConvention()); 
+    options.Conventions.Add(new TenantPageRouteModelConvention());
+
+    // access restrict with policies.
+    // options.Conventions.AuthorizeFolder("/", "Admin");
 
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    // Add role policies etc....
+    // options.AddPolicy("Admin",new AuthorizationPolicyBuilder().RequireAuthenticatedUser().RequireRole("Admin").Build());
+    // options.AddPolicy("Admin", p => p.RequireRole("Admin"));
+});
+
 builder.Services.AddHydro();
 
 var app = builder.Build();
