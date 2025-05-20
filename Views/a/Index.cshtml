@@ -1,0 +1,13 @@
+﻿@page
+@using Hydro
+@model HomePageModel
+@{
+    Layout = "./Shared/_Layout.cshtml";
+
+    ViewData["Title"] = "a Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">A page from views folder </h1>
+    @await Html.Hydro("Counter")
+</div>

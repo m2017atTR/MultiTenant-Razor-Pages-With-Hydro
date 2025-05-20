@@ -1,0 +1,12 @@
+﻿@page
+@model HomePageModel
+@{
+    Layout = "./Shared/_Layout.cshtml";
+    ViewData["Title"] = "b Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">B tenant index from Views Folder</h1>
+    @await Html.Hydro("Counter")
+</div>
+ 
